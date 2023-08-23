@@ -15,7 +15,7 @@ def descargar_archivo(download_url, nombre_archivo):
 
 # Configuracion inicial --------------------------------------------------
 st.set_page_config(page_title='Inicio', page_icon='🔅', layout="centered", initial_sidebar_state='expanded')
-st.sidebar.image('img/main.jpg')
+st.sidebar.image('img/main.png')
 
 with st.sidebar:
     st.title('Fintual API')
