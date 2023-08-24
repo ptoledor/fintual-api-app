@@ -7,12 +7,6 @@ import datetime
 import request_api as fin
 
 
-def descargar_archivo(download_url, nombre_archivo):
-    from urllib.request import urlretrieve
-    urlretrieve(download_url, nombre_archivo)
-    data = pd.read_parquet(nombre_archivo)
-    return data
-
 # Configuracion inicial --------------------------------------------------
 st.set_page_config(page_title='Inicio', page_icon='🔅', layout="centered", initial_sidebar_state='expanded')
 
@@ -24,21 +18,21 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+# Sidebar --------------------------------------------------
+
 st.sidebar.image('img/main3.png')
 with st.sidebar:
     st.title('Easy API Requests')
-
-    
+    st.markdown(
+        """
+        https://github.com/ptoledor/fintual-api-app
+        """
+    )
+        
 
 st.write("## Hola! 👋")
+st.text('Esta es la cosa chora ;)')
 
-st.markdown(
-    """
-    Esta es la cosa chora ;)
-    https://github.com/ptoledor/fintual-api-app
-
-    """
-)
 
 dict_fondos = {
     'Very Conservative Streep':'15077',
