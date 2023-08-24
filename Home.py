@@ -16,8 +16,15 @@ def descargar_archivo(download_url, nombre_archivo):
 # Configuracion inicial --------------------------------------------------
 st.set_page_config(page_title='Inicio', page_icon='🔅', layout="centered", initial_sidebar_state='expanded')
 
+st.markdown("""
+<style>
+    [data-testid=stSidebar] {
+        background-color: #F3F6FA;
+    }
+</style>
+""", unsafe_allow_html=True)
 
-st.sidebar.image('img/main.png')
+st.sidebar.image('img/main3.png')
 with st.sidebar:
     st.title('Easy API Requests')
 
