@@ -50,23 +50,23 @@ api_id = dict_fondos[get_id]
 api_from_date = str(get_from_date)
 api_to_date = str(get_to_date)
 
-request_data = fin.ask_api_real_assets(api_id, api_from_date, api_to_date)
-parsed_data = fin.parse_json(request_data.json(), attribute='net_asset_value')
-parsed_data['net_asset_value'] = parsed_data['net_asset_value'].astype(np.float64)
 
-get_roi = round(fin.calculate_roi(parsed_data) * 100, 2)
+request_data = fin.ask_api_real_assets(api_id, api_from_date, api_to_date)
+attribute = 'net_asset_value'
+parsed_data = fin.parse_json(request_data.json(), attribute=attribute)
+
+try:
+    parsed_data['attributes.' + attribute] = parsed_data['attributes.' + attribute].astype(np.float64)
+except:
+    pass
+
+get_roi = round(fin.calculate_roi(parsed_data, attribute=attribute) * 100, 2)
 
 st.write(f'##### ROI = {get_roi}%')
 
+# parsed_data['attributes.date'] = pd.to_datetime(parsed_data['attributes.date'])
+parsed_data = parsed_data[['attributes.date', 'attributes.' + attribute]]
+parsed_data = parsed_data.rename(columns={'attributes.' + attribute:'Valor Cuota'})
 
-st.line_chart(parsed_data.rename(columns={'date':'index'}).set_index('index'))
+st.line_chart(parsed_data.rename(columns={'attributes.date':'index'}).set_index('index'))
 st.dataframe(data=parsed_data, use_container_width=True)
-
-
-# arr = list(parsed_data['date'])
-# fig, ax = plt.subplots()
-# ax.plot(arr)
-# st.pyplot(fig)
-
-
-
