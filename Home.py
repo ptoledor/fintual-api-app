@@ -30,8 +30,8 @@ with st.sidebar:
     )
         
 
-st.write("## Hola! 👋")
-st.text('Esta es la cosa chora ;)')
+st.write("### Hola! 👋")
+st.text('Revisa los cambios en los portafolios de Fintual')
 
 
 dict_fondos = {
